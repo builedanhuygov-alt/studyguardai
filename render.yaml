@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: studyguard-api
+    env: docker
+    dockerfilePath: deploy/Dockerfile.api
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/v1/liveness
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"

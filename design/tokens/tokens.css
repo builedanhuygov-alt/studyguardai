@@ -1,0 +1,55 @@
+/* StudyGuard AI — CSS variables (generated from tokens.json). Dark is default; */
+/* [data-theme="light"] and prefers-color-scheme both supported. */
+:root {
+  --brand-500:#6366F1; --brand-600:#4F46E5; --brand-700:#4338CA;
+  --coach-600:#7C3AED; --growth-500:#10B981; --streak-500:#F59E0B;
+  --success:#16A34A; --warning:#D97706; --danger:#DC2626; --info:#2563EB;
+
+  --bg:#0B0E14; --surface:#141922; --surface-alt:#1E242E;
+  --text:#E6EDF3; --text-muted:#9AA4B2; --border:#2A313C;
+
+  --font-sans:Inter,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  --font-display:Newsreader,Georgia,serif;
+  --font-mono:JetBrains Mono,SFMono-Regular,Consolas,monospace;
+
+  --text-xs:12px; --text-sm:14px; --text-base:16px; --text-lg:18px; --text-xl:20px;
+  --text-2xl:24px; --text-3xl:30px; --text-4xl:36px; --text-5xl:48px;
+
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+
+  --radius-sm:10px; --radius-md:14px; --radius-lg:20px; --radius-xl:28px; --radius-pill:999px;
+
+  --shadow-xs:0 1px 2px rgba(13,18,28,.06);
+  --shadow-sm:0 2px 6px rgba(13,18,28,.08);
+  --shadow-md:0 6px 16px rgba(13,18,28,.10);
+  --shadow-lg:0 14px 34px rgba(13,18,28,.14);
+  --focus-ring:0 0 0 4px rgba(99,102,241,.30);
+
+  --glass-bg:rgba(20,25,34,.55); --glass-blur:18px; --glass-border:rgba(255,255,255,.08);
+
+  --dur-fast:140ms; --dur-base:220ms; --dur-slow:360ms; --dur-celebrate:600ms;
+  --ease-standard:cubic-bezier(.2,0,0,1); --ease-spring:cubic-bezier(.34,1.56,.64,1);
+}
+
+:root[data-theme="light"], :root.light {
+  --bg:#F7F8FA; --surface:#FFFFFF; --surface-alt:#EEF1F5;
+  --text:#141922; --text-muted:#4B535E; --border:#E2E6EC;
+  --glass-bg:rgba(255,255,255,.65); --glass-border:rgba(255,255,255,.5);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:#F7F8FA; --surface:#FFFFFF; --surface-alt:#EEF1F5;
+    --text:#141922; --text-muted:#4B535E; --border:#E2E6EC;
+    --glass-bg:rgba(255,255,255,.65); --glass-border:rgba(255,255,255,.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+
+@media (prefers-contrast: more) {
+  :root { --border:#5A6472; --text-muted:#C9D0DA; }
+}

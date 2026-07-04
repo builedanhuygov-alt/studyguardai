@@ -1,0 +1,108 @@
+{
+  "n": 2000,
+  "n_present": 1705,
+  "status": {
+    "labels": [
+      "AWAY",
+      "DISTRACTED",
+      "SLOUCHING",
+      "FOCUSED"
+    ],
+    "confusion": [
+      [
+        295,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        633,
+        15,
+        37
+      ],
+      [
+        0,
+        0,
+        346,
+        49
+      ],
+      [
+        0,
+        0,
+        0,
+        625
+      ]
+    ],
+    "macro": {
+      "precision": 0.9594,
+      "recall": 0.95,
+      "f1": 0.9529
+    },
+    "per_label": {
+      "AWAY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "DISTRACTED": {
+        "precision": 1.0,
+        "recall": 0.9241,
+        "f1": 0.9605
+      },
+      "SLOUCHING": {
+        "precision": 0.9584,
+        "recall": 0.8759,
+        "f1": 0.9153
+      },
+      "FOCUSED": {
+        "precision": 0.879,
+        "recall": 1.0,
+        "f1": 0.9356
+      }
+    }
+  },
+  "posture_detection": {
+    "precision": 1.0,
+    "recall": 0.8824,
+    "f1": 0.9375
+  },
+  "focus_detection": {
+    "precision": 1.0,
+    "recall": 0.9241,
+    "f1": 0.9605
+  },
+  "focus_roc_auc": 1.0,
+  "focus_calibration": [
+    {
+      "bin": 0,
+      "mean_predicted": 0.0787,
+      "fraction_positive": 0.0,
+      "count": 911
+    },
+    {
+      "bin": 1,
+      "mean_predicted": 0.2589,
+      "fraction_positive": 0.0531,
+      "count": 113
+    },
+    {
+      "bin": 2,
+      "mean_predicted": 0.5324,
+      "fraction_positive": 0.9902,
+      "count": 205
+    },
+    {
+      "bin": 3,
+      "mean_predicted": 0.6848,
+      "fraction_positive": 1.0,
+      "count": 444
+    },
+    {
+      "bin": 4,
+      "mean_predicted": 0.8441,
+      "fraction_positive": 1.0,
+      "count": 32
+    }
+  ]
+}

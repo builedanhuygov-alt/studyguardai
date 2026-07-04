@@ -1,0 +1,22 @@
+{
+  "description": "Material 3 color scheme for StudyGuard AI (seed #4F46E5).",
+  "seed": "#4F46E5",
+  "schemes": {
+    "light": {
+      "primary": "#4F46E5", "onPrimary": "#FFFFFF",
+      "primaryContainer": "#E0E3FF", "onPrimaryContainer": "#312E81",
+      "secondary": "#7C3AED", "onSecondary": "#FFFFFF",
+      "tertiary": "#10B981", "onTertiary": "#FFFFFF",
+      "error": "#DC2626", "background": "#F7F8FA", "onBackground": "#141922",
+      "surface": "#FFFFFF", "onSurface": "#141922", "outline": "#C9D0DA"
+    },
+    "dark": {
+      "primary": "#A5ADFF", "onPrimary": "#312E81",
+      "primaryContainer": "#4338CA", "onPrimaryContainer": "#E0E3FF",
+      "secondary": "#C4B5FD", "onSecondary": "#3730A3",
+      "tertiary": "#6EE7B7", "onTertiary": "#064E3B",
+      "error": "#FCA5A5", "background": "#0B0E14", "onBackground": "#E6EDF3",
+      "surface": "#141922", "onSurface": "#E6EDF3", "outline": "#4B535E"
+    }
+  }
+}

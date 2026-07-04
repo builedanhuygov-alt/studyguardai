@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "studyguard-ai"
+version = "0.1.0"
+description = "Privacy-first webcam study coach: posture, focus, presence, and study-session analytics."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "StudyGuard AI contributors" }]
+keywords = ["computer-vision", "opencv", "study", "posture", "focus", "productivity"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = ["opencv-python>=4.9", "numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.6",
+    "black>=24.8",
+    "mypy>=1.11",
+    "pre-commit>=3.8",
+    "build>=1.2",
+]
+dashboard = ["streamlit>=1.36", "plotly>=5.22", "pandas>=2.2"]
+api = ["fastapi>=0.111", "uvicorn>=0.30"]
+desktop = ["pywebview>=5.0", "pystray>=0.19", "pillow>=10.3", "fastapi>=0.111", "uvicorn>=0.30"]
+monitoring = ["prometheus-client>=0.20", "sentry-sdk>=2.0"]
+migrations = ["alembic>=1.13", "sqlalchemy>=2.0"]
+research = ["mlflow>=2.14"]
+
+[project.scripts]
+studyguard = "studyguard.cli:main"
+studyguard-api = "studyguard.webapi.app:run"
+studyguard-desktop = "desktop.main:main"
+
+[project.urls]
+Homepage = "https://github.com/builedanhuygov-alt/studyguard-ai"
+Issues = "https://github.com/builedanhuygov-alt/studyguard-ai/issues"
+Changelog = "https://github.com/builedanhuygov-alt/studyguard-ai/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["studyguard", "dashboard", "desktop"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["studyguard"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

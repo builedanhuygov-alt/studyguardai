@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+*.db-wal
+*.db-shm
+exports/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.DS_Store

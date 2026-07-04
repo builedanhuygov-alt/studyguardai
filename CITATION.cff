@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "StudyGuard AI"
+type: software
+authors:
+  - name: "StudyGuard AI contributors"
+repository-code: "https://github.com/builedanhuygov-alt/studyguard-ai"
+license: MIT
+version: "0.1.0"
+date-released: "2026-07-04"
+keywords:
+  - computer-vision
+  - study
+  - productivity
+  - learning-analytics
+  - privacy

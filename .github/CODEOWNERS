@@ -1,0 +1,8 @@
+# Default owners for everything in this repository.
+# Requests for review are automatically assigned to these owners.
+*       @builedanhuygov-alt
+
+# Domain-critical areas (kept explicit for future co-maintainers)
+/studyguard/core.py        @builedanhuygov-alt
+/studyguard/session.py     @builedanhuygov-alt
+/studyguard/privacy.py     @builedanhuygov-alt

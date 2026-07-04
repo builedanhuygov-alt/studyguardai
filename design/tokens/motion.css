@@ -1,0 +1,47 @@
+/* StudyGuard AI Design System V2 -- motion, glass, glow, shimmer utilities.
+   Import after tokens.css. Fully respects prefers-reduced-motion. Zero deps. */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur, 18px)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur, 18px)) saturate(150%);
+  border: 1px solid var(--glass-border);
+}
+
+.card-elevated { transition: transform var(--dur-base,220ms) var(--ease-standard,ease), box-shadow var(--dur-base,220ms) var(--ease-standard,ease); }
+.card-elevated:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+@keyframes sg-fade-up { from { opacity:0; transform:translateY(14px);} to {opacity:1; transform:translateY(0);} }
+@keyframes sg-fade-in { from {opacity:0;} to {opacity:1;} }
+@keyframes sg-scale-in { from {opacity:0; transform:scale(.94);} to {opacity:1; transform:scale(1);} }
+@keyframes sg-shimmer { 0% {background-position:-400px 0;} 100% {background-position:400px 0;} }
+@keyframes sg-float { 0%,100% {transform:translateY(0);} 50% {transform:translateY(-8px);} }
+@keyframes sg-breathe { 0%,100% {box-shadow:0 0 0 0 rgba(99,102,241,.35);} 50% {box-shadow:0 0 0 14px rgba(99,102,241,0);} }
+@keyframes sg-pop { 0% {transform:scale(.6); opacity:0;} 60% {transform:scale(1.08); opacity:1;} 100% {transform:scale(1);} }
+@keyframes sg-ripple { to { transform:scale(3); opacity:0; } }
+
+.reveal { opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease-standard,ease), transform .6s var(--ease-standard,ease); }
+.reveal.is-visible { opacity:1; transform:translateY(0); }
+
+.stagger > * { opacity:0; animation: sg-fade-up .6s var(--ease-standard,ease) forwards; }
+.stagger > *:nth-child(1){animation-delay:.03s} .stagger > *:nth-child(2){animation-delay:.09s}
+.stagger > *:nth-child(3){animation-delay:.15s} .stagger > *:nth-child(4){animation-delay:.21s}
+.stagger > *:nth-child(5){animation-delay:.27s} .stagger > *:nth-child(6){animation-delay:.33s}
+.stagger > *:nth-child(n+7){animation-delay:.38s}
+
+.skeleton { position:relative; overflow:hidden; background:var(--surface-alt,#1e242e); border-radius:10px; }
+.skeleton::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); background-size:400px 100%; animation: sg-shimmer 1.2s infinite; }
+
+.float { animation: sg-float 5s ease-in-out infinite; }
+.breathe { animation: sg-breathe 2.6s ease-in-out infinite; }
+
+.magnetic { transition: transform .15s var(--ease-spring,ease); will-change: transform; }
+.ripple { position:relative; overflow:hidden; }
+.ripple-dot { position:absolute; border-radius:50%; background:rgba(255,255,255,.5); transform:scale(0); animation: sg-ripple .6s ease-out; pointer-events:none; }
+
+.tilt { transform-style: preserve-3d; }
+.page-enter { animation: sg-fade-up .35s var(--ease-standard,ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .stagger > *, .float, .breathe, .skeleton::after, .page-enter { animation: none !important; transition: none !important; opacity:1 !important; transform:none !important; }
+}

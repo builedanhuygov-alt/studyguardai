@@ -1,0 +1,7 @@
+# Developer convenience: build the image and run the test suite.
+services:
+  tests:
+    build: .
+    command: pytest --cov=studyguard --cov-report=term-missing
+    volumes:
+      - ./:/app

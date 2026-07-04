@@ -1,0 +1,16 @@
+# GitHub auto-generated release notes configuration.
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+  categories:
+    - title: "\U0001F680 Features"
+      labels: [enhancement, feature]
+    - title: "\U0001F41B Fixes"
+      labels: [bug, fix]
+    - title: "\U0001F4DA Documentation"
+      labels: [documentation]
+    - title: "\U0001F527 Maintenance"
+      labels: [chore, ci, refactor]
+    - title: "Other Changes"
+      labels: ["*"]

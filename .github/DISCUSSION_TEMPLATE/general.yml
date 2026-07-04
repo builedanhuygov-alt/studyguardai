@@ -1,0 +1,26 @@
+title: "[Discussion] "
+labels: [discussion]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Topic
+      options:
+        - Q&A
+        - Idea
+        - Show and tell
+        - Plugin
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Share your question or idea. Do not include raw video or personal data.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment (if relevant)
+      placeholder: OS, Python version, StudyGuard version

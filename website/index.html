@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StudyGuard AI — The AI-powered Study Coach</title>
+  <meta name="description" content="StudyGuard AI turns any webcam into an on-device focus, posture, and study-session coach. Open source, privacy-first, extensible." />
+  <meta name="keywords" content="AI study coach, focus tracking, posture, computer vision, productivity, open source" />
+  <link rel="canonical" href="https://studyguard.ai/" />
+  <meta property="og:title" content="StudyGuard AI" />
+  <meta property="og:description" content="Privacy-first AI study coach. Camera is one of many sources." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://studyguard.ai/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0B0E14" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"StudyGuard AI","applicationCategory":"EducationApplication","operatingSystem":"Windows, macOS, Linux","offers":{"@type":"Offer","price":"0"}}
+  </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="motion.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header id="site-header">
+    <div class="brand"><img src="logo.svg" alt="StudyGuard AI" height="36" /></div>
+    <nav aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#coach">AI Coach</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#research">Research</a>
+      <a href="#download">Download</a>
+      <a href="https://github.com/builedanhuygov-alt/studyguard-ai">GitHub</a>
+      <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">\u2600\ufe0f/\U0001F319</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <span class="eyebrow">\u2728 Now with explainable AI Coach</span>
+      <h1 class="reveal">Study smarter,<br/>privately.</h1>
+      <p class="reveal">An on-device AI study coach for focus, posture, and study sessions. The camera is one of many sources — your video never leaves your machine.</p>
+      <div class="cta reveal">
+        <a class="btn primary magnetic ripple" href="#download">Download for Windows</a>
+        <a class="btn magnetic ripple" href="https://github.com/builedanhuygov-alt/studyguard-ai">\u2b50 Star on GitHub</a>
+      </div>
+
+      <div class="preview-card tilt reveal">
+        <div class="glass-inner">
+          <div class="preview-row">
+            <div class="preview-kpi"><div class="label">Study Score</div><div class="value" id="stat-score">0</div></div>
+            <div class="preview-kpi"><div class="label">Focus</div><div class="value" id="stat-focus">0</div></div>
+            <div class="preview-kpi"><div class="label">Streak</div><div class="value" id="stat-streak">0d</div></div>
+          </div>
+          <div id="hero-ring" style="display:flex;justify-content:center;padding:8px 0"></div>
+        </div>
+      </div>
+
+      <div class="trust-row reveal">
+        <div><b>100%</b> on-device</div>
+        <div><b>0</b> video ever stored</div>
+        <div><b>MIT</b> licensed &amp; open source</div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2 class="reveal">Features</h2>
+      <p class="section-sub reveal">Not a demo. An engineered study-intelligence platform.</p>
+      <div class="cards stagger">
+        <div class="card card-elevated"><div class="icon">\U0001F3AF</div><h3>Focus &amp; posture</h3><p>Real-time, gentle, hysteresis-based — no single-frame nagging.</p></div>
+        <div class="card card-elevated"><div class="icon">\U0001F4A1</div><h3>Explainable AI coach</h3><p>Evidence, confidence, and supporting metrics behind every tip.</p></div>
+        <div class="card card-elevated"><div class="icon">\U0001F4C8</div><h3>Analytics &amp; goals</h3><p>Trends, streaks, XP, burnout signal, weekly reports.</p></div>
+        <div class="card card-elevated"><div class="icon">\U0001F9E9</div><h3>Extensible</h3><p>Add a detector or data source (calendar, LMS, wearable) as a plugin.</p></div>
+      </div>
+    </section>
+
+    <section id="coach">
+      <h2 class="reveal">AI Coach</h2>
+      <p class="section-sub reveal">Real narrative generated from your own data — not a canned tip.</p>
+      <div class="coach-demo">
+        <div class="narrative-box reveal">“This week you studied about 19 hours. Focus peaks 8–10 PM. Tuesday and Friday dip about 25%. Move your hardest subjects to your peak window.”</div>
+        <div class="reveal">
+          <div class="coach-msg"><span class="badge">high confidence</span><div><b>Consistency</b> — You're on a 14-day streak. Keep the momentum!</div></div>
+          <div class="coach-msg"><span class="badge">medium confidence</span><div><b>Focus vs. yesterday</b> — You focused better than the previous day (+8 points).</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="analytics">
+      <h2 class="reveal">Analytics</h2>
+      <p class="section-sub reveal">A stable REST API feeds the web dashboard, desktop app, or your own UI.</p>
+      <div class="stat-row stagger">
+        <div class="stat"><div class="num" data-count="22.8">0</div><div class="lbl">Detector FPS (measured)</div></div>
+        <div class="stat"><div class="num" data-count="96">0</div><div class="lbl">Focus detection F1 (%)</div></div>
+        <div class="stat"><div class="num" data-count="94">0</div><div class="lbl">Posture detection F1 (%)</div></div>
+        <div class="stat"><div class="num" data-count="3">0</div><div class="lbl">Interfaces: Web, Desktop, API</div></div>
+      </div>
+    </section>
+
+    <section id="research">
+      <h2 class="reveal">Research</h2>
+      <p class="reveal">Reproducible evaluation (precision/recall/F1/ROC/AUC/calibration) on a synthetic dataset — self-eval, not yet human-validated. See <a href="https://github.com/builedanhuygov-alt/studyguard-ai/tree/main/docs/research">docs/research</a>.</p>
+    </section>
+
+    <section id="download">
+      <h2 class="reveal">Download</h2>
+      <p class="reveal">Windows installer (no Python required) from <a href="https://github.com/builedanhuygov-alt/studyguard-ai/releases">GitHub Releases</a>, or run from source:</p>
+      <pre class="reveal"><code>pip install -e ".[desktop]" &amp;&amp; studyguard-desktop</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>MIT licensed · Privacy-first · <a href="https://github.com/builedanhuygov-alt/studyguard-ai">github.com/builedanhuygov-alt/studyguard-ai</a></p>
+  </footer>
+
+  <script src="interactions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

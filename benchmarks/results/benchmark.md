@@ -1,0 +1,16 @@
+# Benchmark Report
+
+_Generated: 2026-07-04T12:43:13.940631+00:00_
+
+| Metric | Value |
+| --- | --- |
+| python | 3.13.13 |
+| platform | Linux-5.10.174-x86_64-with-glibc2.34 |
+| detector_pipeline_fps | 22.8 |
+| inference_latency_ms | 43.8 |
+| plugin_load_ms | 16.17 |
+| sqlite_writes_per_s | 8322 |
+| processing_peak_mem_mb | 0.3 |
+| cold_import_ms | 103.6 |
+
+> Measured on the machine that ran this script; re-run locally for your hardware.
