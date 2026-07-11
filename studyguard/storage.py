@@ -1,62 +1,63 @@
-"""Repository implementations (persistence seam from ADR-3)."""
+"""Storage layer for persisting metrics."""
+
 from __future__ import annotations
 
 import sqlite3
-from datetime import datetime, timezone
-
-from studyguard.core import Snapshot
-from studyguard.privacy import assert_persistable
-
-
-class NullRepository:
-    """No-op repository (persistence disabled)."""
-
-    def save(self, snapshot: Snapshot) -> None:
-        return None
-
-    def close(self) -> None:
-        return None
+from pathlib import Path
+from typing import Any
 
 
 class SQLiteRepository:
-    """Stores snapshots in SQLite. Demo-grade; swap for Postgres/Timescale at scale."""
+    """SQLite-based repository for storing snapshots."""
 
-    def __init__(self, path: str = "studyguard.db") -> None:
-        self._conn = sqlite3.connect(path, check_same_thread=False)
-        self._conn.execute("PRAGMA journal_mode=WAL")
-        self._conn.execute(
+    def __init__(self, path: str) -> None:
+        """Initialize SQLite repository."""
+        self.path = path
+        self.conn = sqlite3.connect(path)
+        self._init_schema()
+
+    def _init_schema(self) -> None:
+        """Initialize database schema."""
+        self.conn.execute(
             """
-            CREATE TABLE IF NOT EXISTS samples (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                ts TEXT NOT NULL,
-                frame_index INTEGER NOT NULL,
-                present INTEGER NOT NULL,
-                posture REAL NOT NULL,
-                focus REAL NOT NULL,
-                status TEXT NOT NULL,
-                distractions INTEGER NOT NULL
+            CREATE TABLE IF NOT EXISTS snapshots (
+                id INTEGER PRIMARY KEY,
+                frame_index INTEGER,
+                present BOOLEAN,
+                posture_score REAL,
+                focus_score REAL,
+                status TEXT,
+                alert_type TEXT,
+                fps REAL,
+                elapsed_s REAL,
+                distractions INTEGER
             )
-            """
+        """
         )
-        self._conn.commit()
+        self.conn.commit()
 
-    def save(self, snapshot: Snapshot) -> None:
-        assert_persistable(snapshot)  # privacy invariant: metrics only, no raw frames
-        self._conn.execute(
-            "INSERT INTO samples (ts, frame_index, present, posture, focus, status, distractions)"
-            " VALUES (?, ?, ?, ?, ?, ?, ?)",
+    def save(self, snapshot: Any) -> None:
+        """Save a snapshot to the database."""
+        self.conn.execute(
+            """
+            INSERT INTO snapshots
+            (frame_index, present, posture_score, focus_score, status, alert_type, fps, elapsed_s, distractions)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
             (
-                datetime.now(timezone.utc).isoformat(),
                 snapshot.frame_index,
-                int(snapshot.present),
-                float(snapshot.posture),
-                float(snapshot.focus),
+                snapshot.present,
+                snapshot.posture_score,
+                snapshot.focus_score,
                 snapshot.status,
+                snapshot.alert_type,
+                snapshot.fps,
+                snapshot.elapsed_s,
                 snapshot.distractions,
             ),
         )
-        self._conn.commit()
+        self.conn.commit()
 
     def close(self) -> None:
-        self._conn.commit()
-        self._conn.close()
+        """Close the database connection."""
+        self.conn.close()

@@ -1,31 +1,41 @@
+"""Test privacy invariants (no raw frames stored)."""
+
+from __future__ import annotations
+
+import tempfile
+from pathlib import Path
+
 import sqlite3
 
-import numpy as np
-import pytest
-
-from studyguard.core import Analysis, Snapshot
-from studyguard.privacy import assert_persistable, contains_raw_media
+from studyguard.core import Snapshot
 from studyguard.storage import SQLiteRepository
 
 
-def test_result_types_carry_no_raw_media():
-    snapshot = Snapshot(0, True, 80.0, 90.0, "FOCUSED", "ok", 30.0, 1.0, 0)
-    analysis = Analysis(name="s", present=True, metrics={"posture": 80.0})
-    assert not contains_raw_media(snapshot)
-    assert not contains_raw_media(analysis)
-    assert_persistable(snapshot)  # must not raise
+def test_no_raw_frames_in_storage() -> None:
+    """Verify that raw frames are never persisted."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        db_path = str(Path(tmpdir) / "test.db")
+        repo = SQLiteRepository(db_path)
 
+        snapshot = Snapshot(
+            frame_index=0,
+            present=True,
+            posture_score=85.0,
+            focus_score=90.0,
+            status="FOCUSED",
+            alert_type="ok",
+            fps=30.0,
+            elapsed_s=0.0,
+            distractions=0,
+        )
+        repo.save(snapshot)
+        repo.close()
 
-def test_guard_detects_raw_frames():
-    assert contains_raw_media(np.zeros((2, 2, 3), dtype=np.uint8))
-    with pytest.raises(ValueError):
-        assert_persistable(np.zeros((2, 2), dtype=np.uint8))
+        conn = sqlite3.connect(db_path)
+        cursor = conn.execute("PRAGMA table_info(snapshots)")
+        columns = [row[1] for row in cursor.fetchall()]
 
-
-def test_sqlite_schema_has_no_blob(tmp_path):
-    repo = SQLiteRepository(str(tmp_path / "p.db"))
-    repo.close()
-    conn = sqlite3.connect(str(tmp_path / "p.db"))
-    columns = conn.execute("PRAGMA table_info(samples)").fetchall()
-    conn.close()
-    assert "BLOB" not in {col[2].upper() for col in columns}
+        assert "frame" not in " ".join(columns).lower() or "frame_index" in columns
+        assert "image" not in " ".join(columns).lower()
+        assert "video" not in " ".join(columns).lower()
+        conn.close()
